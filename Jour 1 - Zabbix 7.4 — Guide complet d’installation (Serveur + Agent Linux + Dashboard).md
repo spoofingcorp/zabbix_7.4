@@ -1,4 +1,3 @@
-````markdown
 # 🧭 Atelier Complet Zabbix 7.4 — Ubuntu 24.04  
 **Installation Serveur | Installation Agent Linux | Ajout d’Hôte | Templates | Dashboard | Vérifications | Dépannage**
 
