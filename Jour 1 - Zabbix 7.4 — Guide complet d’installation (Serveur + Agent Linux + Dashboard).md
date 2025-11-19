@@ -236,15 +236,6 @@ sudo bash /usr/local/sbin/install-zabbix74-full.sh
 
 ---
 
-## 1.2 **Lancer l’installation**
-
-```bash
-chmod +x /usr/local/sbin/install-zabbix74-full.sh
-sudo bash /usr/local/sbin/install-zabbix74-full.sh
-```
-
----
-
 ## 1.3 **Configuration Web initiale**
 
 Une fois l’interface web accessible via :
