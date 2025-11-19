@@ -197,50 +197,10 @@ Le protocole SNMP (Simple Network Management Protocol) est la "langue" universel
      * *Exemple :* .1.3.6.1.2.1.1.1.0 \= sysDescr (Description du système).  
      * *Exemple :* .1.3.6.1.2.1.2.2.1.8.x \= ifOperStatus (État opérationnel du port x).
 
-     
 
-     
+![pix/z3.png](pix/z3.png)
 
-     
-
-     
-
-     
-
-     
-
-     
-
-     
-
-     
-
-     
-
-     
-
-     
-
-     
-
-     
-
-     
-
-     
-
-     
-
-     
-
-   
-
-
-     
-
-     
-
-     
+![pix/z4.png](pix/z4.png)
 
 * **Bonne Pratique (SNMP) :**  
   * Utiliser **SNMPv3** dès que possible.  
