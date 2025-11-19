@@ -388,17 +388,41 @@ Assurez-vous que votre serveur Ubuntu 24.04 est à jour.
 
 **Sur l'interface Web de Zabbix :** . 
 
-**Ajout de l'Hôte** 
+**Ajout de l'Hôte**
 
-1\. Configuration \> Hosts \> Create host. 
+1. Chemin :
 
-2\. **Onglet Host :** \* Host name: WIN-DC-01 \* Host groups: Windows servers \* Interfaces: Add \> Agent. Entrez l'IP du Windows Server. Port 10050\. 
+   ```
+   Configuration > Hosts > Create host
+   ```
 
-3\. **Onglet Templates :** \* Liez le template Windows by Zabbix agent. 
+2. **Onglet Host :**
 
-4\. Cliquez Add. 
+   * **Host name :** `WIN-DC-01`
+   * **Host groups :** `Windows servers`
+   * **Interfaces :** cliquez **Add**
 
-5\. **Vérification** \* Vérifiez l'icône Availability et Latest data.
+     * Type : **Agent**
+     * Adresse IP : IP du Windows Server
+     * **Port : 10050**
+
+3. **Onglet Templates :**
+
+   * Liez le template : **Windows by Zabbix agent**
+
+4. Cliquez sur **Add** pour enregistrer l’hôte.
+
+5. **Vérification**
+
+   * L’icône **Availability** doit passer au vert.
+   * Chemin :
+
+     ```
+     Monitoring > Latest data
+     ```
+
+     Vérifiez que les données remontent depuis `WIN-DC-01`.
+
 
 ### 
 
