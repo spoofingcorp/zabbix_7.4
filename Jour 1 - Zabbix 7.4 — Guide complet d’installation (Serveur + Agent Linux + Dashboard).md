@@ -530,4 +530,3 @@ ufw allow 10050/tcp
 ---
 
 
-Je peux te les générer.
