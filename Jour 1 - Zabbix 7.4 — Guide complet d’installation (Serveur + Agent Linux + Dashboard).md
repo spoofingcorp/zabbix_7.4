@@ -420,7 +420,7 @@ Data collection → Hosts → Create host
 
 ```
 Type : Agent
-IP   : 192.168.20.75
+IP   : 192.168.20.75   # Changer par l'IP de votre VM Debian GUI ou Ubuntu GUI qui dipose de l'agent
 Port : 10050
 ```
 
