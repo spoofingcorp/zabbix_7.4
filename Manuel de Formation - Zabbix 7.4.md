@@ -317,16 +317,50 @@ Assurez-vous que votre serveur Ubuntu 24.04 est à jour.
 
 **Sur l'interface Web de Zabbix :** 
 
-1\. **Ajout de l'Hôte**.   
-Allez dans Configuration \> Hosts \> Create host. 
+1. **Ajout de l’Hôte**
+   Chemin :
 
-2\. **Onglet Host :** \* Host name: ubuntu-web-01 \* Host groups: Linux servers \* Interfaces: Cliquez Add \> Agent. Entrez l'adresse IP du serveur Ubuntu. Port 10050\. 
+   ```
+   Configuration > Hosts > Create host
+   ```
 
-3\. **Onglet Templates :** \* Dans Link new templates, cherchez et sélectionnez Linux by Zabbix agent. \* Cliquez sur Add (le petit lien bleu). 
+2. **Onglet Host :**
+   Paramètres :
 
-4\. Cliquez sur Add (en bas) pour sauvegarder l'hôte. 
+   * **Host name :** `ubuntu-web-01`
+   * **Host groups :** `Linux servers`
+   * **Interfaces :** cliquez **Add**
 
-5\. **Vérification** \* Après 1-2 min, l'icône Availability (colonne Availability) doit passer au **vert**. \* Allez dans Monitoring \> Latest data et filtrez sur ubuntu-web-01 pour voir les données arriver.
+     * Type : **Agent**
+     * Adresse IP : IP du serveur Ubuntu
+     * **Port : 10050**
+
+3. **Onglet Templates :**
+   Dans :
+
+   ```
+   Link new templates
+   ```
+
+   Sélectionnez :
+
+   * **Linux by Zabbix agent**
+   * Cliquez sur **Add** (lien bleu)
+
+4. Cliquez sur **Add** (en bas de page) pour sauvegarder l’hôte.
+
+5. **Vérification**
+
+   * Après 1–2 minutes, l’icône **Availability** doit passer au **vert**.
+   * Chemin pour consulter les données :
+
+     ```
+     Monitoring > Latest data
+     ```
+
+     Filtrez ensuite sur `ubuntu-web-01` pour voir les métriques apparaître.
+
+
 
 **Partie 2 : Hôte Windows Server 2025**
 
