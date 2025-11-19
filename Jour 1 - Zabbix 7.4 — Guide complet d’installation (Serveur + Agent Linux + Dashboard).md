@@ -275,6 +275,12 @@ cp /usr/bin/fping /usr/sbin
 chmod u+s /usr/sbin/fping
 ```
 
+Zabbix nécessite `zabbix-get` pour tester la communication entre le serveur Zabbix et un agent, mais uniquement depuis le serveur Zabbix.
+
+```bash
+apt install zabbix-get
+```
+
 ---
 
 ## 1.5 **Activer les scripts globaux**
@@ -297,16 +303,29 @@ systemctl restart zabbix-server
 
 ---
 
-# 2. **Installation agent Zabbix 7.4 pour Linux (Ubuntu 24.04)**
+# 2. **Installation agent Zabbix 7.4 pour Linux (Ubuntu 24.04 et Debian 13)**
 
 ## 2.1 **Installation du dépôt (source officielle)**
 
-Source :
+⚠️ ATTENTION SELECTIONNER LA VERSION DE L'AGENT EN FONCTION DE VOTRE OS 😸
+
+Source pour Ubuntu 24.04 :
 [https://www.zabbix.com/download?zabbix=7.2&os_distribution=ubuntu&os_version=24.04&components=agent&db=&ws=](https://www.zabbix.com/download?zabbix=7.2&os_distribution=ubuntu&os_version=24.04&components=agent&db=&ws=)
 
+Source pour Debian 13 :
+[https://www.zabbix.com/download?zabbix=7.4&os_distribution=debian&os_version=13&components=agent&db=&ws=](https://www.zabbix.com/download?zabbix=7.4&os_distribution=debian&os_version=13&components=agent&db=&ws=)
+
 ```bash
+# AGENT OU UBUNTU 24.04
 wget https://repo.zabbix.com/zabbix/7.2/release/ubuntu/pool/main/z/zabbix-release/zabbix-release_latest_7.2+ubuntu24.04_all.deb
 dpkg -i zabbix-release_latest_7.2+ubuntu24.04_all.deb
+apt update
+```
+
+```bash
+# AGENT OU DEBIAN 12
+wget https://repo.zabbix.com/zabbix/7.4/release/debian/pool/main/z/zabbix-release/zabbix-release_latest_7.4+debian13_all.deb
+dpkg -i zabbix-release_latest_7.4+debian13_all.deb
 apt update
 ```
 
