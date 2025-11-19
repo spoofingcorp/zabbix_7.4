@@ -352,13 +352,13 @@ Modifier les paramètres essentiels :
 ### 🔹 Serveur autorisé à interroger l’agent (passif)
 
 ```
-Server=192.168.20.25
+Server=192.168.X.X  # Renseigner l'IP de votre serveur Zabbix
 ```
 
 ### 🔹 Serveur recevant les données de l’agent (actif)
 
 ```
-ServerActive=192.168.20.25
+ServerActive=192.168.X.X  # Renseigner l'IP de votre serveur Zabbix
 ```
 
 ### 🔹 Nom de l’hôte (DOIT correspondre dans Zabbix)
@@ -381,7 +381,7 @@ systemctl enable zabbix-agent
 Depuis le serveur :
 
 ```bash
-zabbix_get -s 192.168.20.75 -k agent.ping
+zabbix_get -s 192.168.x.x -k agent.ping   # Changer par l'IP de votre VM Debian GUI ou Ubuntu GUI qui dipose de l'agent afin de tester sa réponse depuis le serveur Zabbix
 ```
 
 Résultat attendu :
