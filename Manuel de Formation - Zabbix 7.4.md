@@ -92,7 +92,8 @@ Administrateurs systèmes, ingénieurs réseau, et toute personne responsable de
 
 #### **Module 2 : Architecture Zabbix 7.0**
 
-![][image1]
+![pix/z1.png](pix/z1.png)
+
 
 * **Zabbix Server (zabbix\_server) :**
 
@@ -106,7 +107,7 @@ Administrateurs systèmes, ingénieurs réseau, et toute personne responsable de
     * **Timer :** Gère le temps, les maintenances, les actions.  
     * **Alerters :** Gèrent l'envoi des notifications (email, scripts, webhooks).
 
-!(images/z1.png)
+![pix/z2.png](pix/z2.png)
 
 
 **Bonne Pratique :** Le serveur Zabbix ne doit faire *que* Zabbix. Ne pas installer d'autres services (serveur web, mail) dessus pour des raisons de performance.
@@ -153,7 +154,7 @@ Administrateurs systèmes, ingénieurs réseau, et toute personne responsable de
 
 #### **Module 3 : Concepts Clés (Le Vocabulaire Zabbix)**
 
-![][image3]
+![pix/z2.png](pix/z2.png)
 
 * **Host (Hôte) :** L'équipement à superviser (un serveur, un switch, une VM).
 
