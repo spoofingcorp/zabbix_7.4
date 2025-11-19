@@ -106,7 +106,8 @@ Administrateurs systèmes, ingénieurs réseau, et toute personne responsable de
     * **Timer :** Gère le temps, les maintenances, les actions.  
     * **Alerters :** Gèrent l'envoi des notifications (email, scripts, webhooks).
 
-![][image2]
+!(images/z1.png)
+
 
 **Bonne Pratique :** Le serveur Zabbix ne doit faire *que* Zabbix. Ne pas installer d'autres services (serveur web, mail) dessus pour des raisons de performance.
 
