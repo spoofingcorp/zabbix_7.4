@@ -120,13 +120,18 @@ Aller sur https://www.zabbix.com/download et trouver les bonnes commandes suivan
 3. Configuration :  
    Éditez la config de l'agent :
    
-   `nano /etc/zabbix/zabbix\_agent2.conf`
+   ` nano /etc/zabbix/zabbix_agent2.conf`
    
    Remplissez les champs pour supporter les deux modes :  
    
    ```bash
+<<<<<<< HEAD
    * Server=IP\_ZABBIX (Non optionnel Bug et débat au sein de la commu)
    * ServerActive=IP\_ZABBIX (Pour le mode Actif)  
+=======
+   * Server=IP_ZABBIX (Pour le mode Passif)  
+   * ServerActive=IP_ZABBIX (Pour le mode Actif)  
+>>>>>>> d357790d96a381e64122f318938696fb9cdd4482
    * Hostname=VotreNomLinuxExact (Doit correspondre à l'interface Web)
    ``` 
    
@@ -138,7 +143,7 @@ Aller sur https://www.zabbix.com/download et trouver les bonnes commandes suivan
    
    Depuis le serveur Zabbix, testez : 
    ``` 
-   zabbix\_get \-s IP\_AGENT \-k agent.version (Doit afficher 7.4.x)
+   zabbix_get -s IP_de_la_VM -k agent.version (Doit afficher 7.4.x)
    ``` 
 
 ---
