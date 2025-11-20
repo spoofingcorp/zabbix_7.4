@@ -125,13 +125,12 @@ Aller sur https://www.zabbix.com/download et trouver les bonnes commandes suivan
    Remplissez les champs pour supporter les deux modes :  
    
    ```bash
-<<<<<<< HEAD
    * Server=IP\_ZABBIX (Non optionnel Bug et débat au sein de la commu)
    * ServerActive=IP\_ZABBIX (Pour le mode Actif)  
-=======
+
    * Server=IP_ZABBIX (Pour le mode Passif)  
    * ServerActive=IP_ZABBIX (Pour le mode Actif)  
->>>>>>> d357790d96a381e64122f318938696fb9cdd4482
+
    * Hostname=VotreNomLinuxExact (Doit correspondre à l'interface Web)
    ``` 
    
