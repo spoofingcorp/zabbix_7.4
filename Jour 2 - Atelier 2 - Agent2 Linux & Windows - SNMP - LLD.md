@@ -121,7 +121,7 @@ Aller sur https://www.zabbix.com/download et trouver les bonnes commandes suivan
 3. Configuration :  
    Éditez la config de l'agent :
    
-   `nano /etc/zabbix/zabbix/agent2.conf`
+   `nano /etc/zabbix/agent2.conf`
    
    Remplissez les champs pour supporter les deux modes :  
    
