@@ -68,15 +68,7 @@ Zabbix 7 possède des connecteurs natifs plus puissants que les webhooks bruts.
 
 ## **3\. 🔔 Configuration des Triggers (Nouvelle Syntaxe Z7)**
 
-## 1. Configuration des triggers (nouvelle syntaxe Zabbix 7)
-
-Chemin : Data collection → Hosts → Triggers
-
-Zabbix 7.4 n’utilise plus {Host:key.last()}
-➡️ Maintenant : last(/Host/key)
----
-
-## **1.1 Linux – Disque faible (Trigger intelligent)**
+### **1.1 Linux – Disque faible (Trigger intelligent)**
 
 ### **Créer le Trigger**
 
