@@ -121,13 +121,13 @@ Aller sur https://www.zabbix.com/download et trouver les bonnes commandes suivan
 3. Configuration :  
    Éditez la config de l'agent :
    
-   `nano /etc/zabbix/zabbix\_agent2.conf`
+   `nano /etc/zabbix/zabbix/agent2.conf`
    
    Remplissez les champs pour supporter les deux modes :  
    
    ```bash
-   * Server=IP\_ZABBIX (Pour le mode Passif)  
-   * ServerActive=IP\_ZABBIX (Pour le mode Actif)  
+   * Server=IP_ZABBIX (Pour le mode Passif)  
+   * ServerActive=IP_ZABBIX (Pour le mode Actif)  
    * Hostname=VotreNomLinuxExact (Doit correspondre à l'interface Web)
    ``` 
    
