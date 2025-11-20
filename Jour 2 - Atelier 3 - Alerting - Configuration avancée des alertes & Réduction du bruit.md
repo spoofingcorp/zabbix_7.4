@@ -77,16 +77,20 @@ Zabbix 7 possède des connecteurs natifs plus puissants que les webhooks bruts.
 * **Expression (nouvelle syntaxe)** :
 
 ```
-last(/Linux Server/vfs.fs.size[/,pfree]) < 5
+last(/metabase2023/vfs.fs.dependent.size[/,pused]) > 50
 ```
+ ![pix/z11.png](pix/z11.png)
+
 
 ### **1.1.1 Hysteresis — Anti Flapping (faux positifs)**
 
 Pour forcer la continuité du problème durant 5 minutes :
 
 ```
-max(/Linux Server/vfs.fs.size[/,pfree],5m) < 5
+max(/metabase2023/vfs.fs.dependent.size[/,pused],#5)>50
 ```
+
+![pix/z12.png](pix/z12.png)
 
 ✔ Cela garantit que l’espace libre **n’est jamais repassé au-dessus de 5%** durant 5 minutes.
 
@@ -101,7 +105,7 @@ max(/Linux Server/vfs.fs.size[/,pfree],5m) < 5
 * **Expression** :
 
 ```
-last(/Switch Cisco/net.if.status[ifOperStatus.10101]) = 2
+last(/Switch/net.if.status[ifOperStatus.10101])=2
 ```
 
 ### **1.2.2 Taux d’erreur élevé**
@@ -111,7 +115,7 @@ last(/Switch Cisco/net.if.status[ifOperStatus.10101]) = 2
 * **Expression** :
 
 ```
-min(/Switch Cisco/net.if.in.errors[ifInErrors.10101],10m) > 5
+min(/Switch/net.if.in.errors[ifInErrors.10101],10)>5
 ```
 
 ✔ Cela évite les alertes sur un pic temporaire.
