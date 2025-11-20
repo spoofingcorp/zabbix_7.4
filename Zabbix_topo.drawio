@@ -1,0 +1,108 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/26.0.16 Chrome/132.0.6834.196 Electron/34.2.0 Safari/537.36" version="26.0.16">
+  <diagram name="Page-1" id="KWDaGm8UEr1PnpzA-vV0">
+    <mxGraphModel dx="1689" dy="464" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="D1A13RoK5UVlQh-qoMfC-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;endArrow=none;endFill=0;dashed=1;entryX=0.25;entryY=0;entryDx=0;entryDy=0;" parent="1" source="D1A13RoK5UVlQh-qoMfC-4" target="D1A13RoK5UVlQh-qoMfC-3" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="D1A13RoK5UVlQh-qoMfC-2" value="VM Ubuntu 24.04&lt;div&gt;Server Supervision&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;Zabbix 7.4&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" parent="1" vertex="1">
+          <mxGeometry x="-533.9999999999999" y="158" width="125" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="D1A13RoK5UVlQh-qoMfC-3" value="Switch Dawan&lt;br&gt;192.168.13.X/24" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" parent="1" vertex="1">
+          <mxGeometry x="-349" y="398.9" width="140" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="D1A13RoK5UVlQh-qoMfC-4" value="PVE01 &#xa;" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://www.factorfx.com/wp-content/uploads/2024/04/proxmox-logo-stacked-color-1.png;fontSize=9;" parent="1" vertex="1">
+          <mxGeometry x="-399" y="272" width="53.8" height="53.8" as="geometry" />
+        </mxCell>
+        <mxCell id="D1A13RoK5UVlQh-qoMfC-5" value="PVE02" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://www.factorfx.com/wp-content/uploads/2024/04/proxmox-logo-stacked-color-1.png;fontSize=9;" parent="1" vertex="1">
+          <mxGeometry x="-305.9" y="272" width="53.8" height="53.8" as="geometry" />
+        </mxCell>
+        <mxCell id="D1A13RoK5UVlQh-qoMfC-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;endFill=0;dashed=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="D1A13RoK5UVlQh-qoMfC-5" target="D1A13RoK5UVlQh-qoMfC-3" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-339" y="335.9" as="sourcePoint" />
+            <mxPoint x="-262" y="399.9" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="D1A13RoK5UVlQh-qoMfC-7" value="PVE04" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://www.factorfx.com/wp-content/uploads/2024/04/proxmox-logo-stacked-color-1.png;fontSize=9;" parent="1" vertex="1">
+          <mxGeometry x="-127.19999999999999" y="280" width="53.8" height="53.8" as="geometry" />
+        </mxCell>
+        <mxCell id="D1A13RoK5UVlQh-qoMfC-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;endArrow=none;endFill=0;dashed=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="D1A13RoK5UVlQh-qoMfC-7" target="D1A13RoK5UVlQh-qoMfC-3" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-362" y="335.9" as="sourcePoint" />
+            <mxPoint x="-304" y="408.9" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="D1A13RoK5UVlQh-qoMfC-22" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.25;exitY=1;exitDx=0;exitDy=0;entryX=0.4;entryY=0.1;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="D1A13RoK5UVlQh-qoMfC-16" target="D1A13RoK5UVlQh-qoMfC-29" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="D1A13RoK5UVlQh-qoMfC-16" value="Accès au Cluster Proxmox Dawan&#xa;https://82.127.147.7:9911/" style="text;whiteSpace=wrap;" parent="1" vertex="1">
+          <mxGeometry x="-777" y="66" width="200" height="36" as="geometry" />
+        </mxCell>
+        <mxCell id="D1A13RoK5UVlQh-qoMfC-17" value="PVE03" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://www.factorfx.com/wp-content/uploads/2024/04/proxmox-logo-stacked-color-1.png;fontSize=9;" parent="1" vertex="1">
+          <mxGeometry x="-202" y="279" width="53.8" height="53.8" as="geometry" />
+        </mxCell>
+        <mxCell id="D1A13RoK5UVlQh-qoMfC-18" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;endArrow=none;endFill=0;dashed=1;entryX=0.75;entryY=0;entryDx=0;entryDy=0;" parent="1" source="D1A13RoK5UVlQh-qoMfC-17" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-352" y="345.9" as="sourcePoint" />
+            <mxPoint x="-234.2" y="409.4" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="D1A13RoK5UVlQh-qoMfC-24" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.25;entryDx=0;entryDy=0;" parent="1" source="D1A13RoK5UVlQh-qoMfC-20" target="D1A13RoK5UVlQh-qoMfC-2" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="D1A13RoK5UVlQh-qoMfC-20" value="Ubuntu/Debian Desktop GUI&lt;div&gt;Administration Zabbix GUI et SSH&lt;br&gt;&amp;nbsp;+ Agent&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" parent="1" vertex="1">
+          <mxGeometry x="-287" y="97" width="125" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="D1A13RoK5UVlQh-qoMfC-26" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.75;entryDx=0;entryDy=0;" parent="1" source="D1A13RoK5UVlQh-qoMfC-23" target="D1A13RoK5UVlQh-qoMfC-2" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="D1A13RoK5UVlQh-qoMfC-23" value="Windows Server 2025&lt;br&gt;&lt;div&gt;+ Agent&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" parent="1" vertex="1">
+          <mxGeometry x="-286.9999999999999" y="191" width="125" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="D1A13RoK5UVlQh-qoMfC-30" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.55;exitY=0.95;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.75;entryDx=0;entryDy=0;" parent="1" source="D1A13RoK5UVlQh-qoMfC-29" target="D1A13RoK5UVlQh-qoMfC-4" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="D1A13RoK5UVlQh-qoMfC-29" value="" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="-764" y="173.99999999999997" width="91" height="41" as="geometry" />
+        </mxCell>
+        <mxCell id="dpnXTQ7onnU5Y541FGZK-1" value="Cisco 2960X PoE" style="sketch=0;points=[[0.015,0.015,0],[0.985,0.015,0],[0.985,0.985,0],[0.015,0.985,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];verticalLabelPosition=bottom;html=1;verticalAlign=top;aspect=fixed;align=center;pointerEvents=1;shape=mxgraph.cisco19.rect;prIcon=l2_switch;fillColor=#FAFAFA;strokeColor=#005073;" vertex="1" parent="1">
+          <mxGeometry x="-741" y="307" width="50" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="dpnXTQ7onnU5Y541FGZK-2" value="" style="fontColor=#0066CC;verticalAlign=top;verticalLabelPosition=bottom;labelPosition=center;align=center;html=1;outlineConnect=0;fillColor=#CCCCCC;strokeColor=#6881B3;gradientColor=none;gradientDirection=north;strokeWidth=2;shape=mxgraph.networks.security_camera;" vertex="1" parent="1">
+          <mxGeometry x="-799" y="428.9" width="54" height="42" as="geometry" />
+        </mxCell>
+        <mxCell id="dpnXTQ7onnU5Y541FGZK-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;endArrow=none;startFill=0;" edge="1" parent="1" source="dpnXTQ7onnU5Y541FGZK-2" target="dpnXTQ7onnU5Y541FGZK-1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="-725" y="450" />
+              <mxPoint x="-725" y="393" />
+              <mxPoint x="-819" y="393" />
+              <mxPoint x="-819" y="332" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="dpnXTQ7onnU5Y541FGZK-4" value="Port G1/0/1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="dpnXTQ7onnU5Y541FGZK-3">
+          <mxGeometry x="0.7847" y="-1" relative="1" as="geometry">
+            <mxPoint x="-9" y="-1" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="dpnXTQ7onnU5Y541FGZK-5" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;endArrow=none;startFill=0;exitX=0.31;exitY=0.8;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="D1A13RoK5UVlQh-qoMfC-29" target="dpnXTQ7onnU5Y541FGZK-1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-573" y="433" as="sourcePoint" />
+            <mxPoint x="-569" y="315" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="dpnXTQ7onnU5Y541FGZK-6" value="Port G1/0/24" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="dpnXTQ7onnU5Y541FGZK-5">
+          <mxGeometry x="0.7847" y="-1" relative="1" as="geometry">
+            <mxPoint x="3" y="-16" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="dpnXTQ7onnU5Y541FGZK-9" value="IP Public - Port SNMP&lt;div&gt;&lt;br&gt;80.14.162.70:16444&lt;/div&gt;" style="text;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-669" y="296.8" width="135" height="36" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
