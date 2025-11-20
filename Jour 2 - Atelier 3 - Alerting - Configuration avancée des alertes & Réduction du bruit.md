@@ -42,13 +42,14 @@
 ### **2.2 Configurer Discord & Teams (Méthode native Zabbix 7\)**
 
 Zabbix 7 possède des connecteurs natifs plus puissants que les webhooks bruts.  
-**Pour Discord :**
+**Pour Discord :** voir également [Notice Zabbix / Discord](https://github.com/spoofingcorp/zabbix_7.4/blob/main/DIscord_config.md)
 
 * Alerts → Media types.  
 * Chercher **Discord**. S'il n'est pas là : Import (fichier XML officiel Zabbix) ou créer un nouveau type "Webhook".  
 * *Si Webhook manuel simple :*  
   * **Type :** Webhook  
   * **Parameters :** Ajouter discord\_endpoint avec l'URL de votre Webhook Discord.
+
 
 **Pour Teams :**
 
@@ -69,116 +70,258 @@ Zabbix 7 possède des connecteurs natifs plus puissants que les webhooks bruts.
 
 **Attention :** La syntaxe {Host:key.last()} est obsolète. Nous utilisons last(/Host/key).
 
-### **3.1 Agent Linux — Disque faible (Trigger intelligent)**
+Voici une **version corrigée, unifiée et complète**, qui **combine ton travail** (triggers, faux positifs, dépendances, tests…) **avec l’atelier professionnel sur les actions, conditions, opérations, escalades et opérations de récupération pour Zabbix 7.4**.
 
-* **Chemin :** Data collection → Hosts → Triggers (Linux Server).  
-* **Action :** Create trigger.
+Le tout est cohérent, structuré, exploitable en formation ou en documentation interne.
 
-**Exemple : Espace disque critique (\< 5%)**
+---
 
-* **Name :** Low disk space on {HOST.NAME} (Volume: {ITEM.VALUE1})  
-* **Severity :** High  
-* **Expression (Nouvelle syntaxe) :**  
-  `last(/Linux Server/vfs.fs.size[/,pfree]) < 5`
+# 🧪 **ATELIER ZABBIX 7.4 — Configuration Triggers + Actions + Escalades + Recovery**
 
-#### **3.1.1 Réduction des faux positifs (Hysteresis)**
+## 🎯 Objectif
 
-Pour éviter le "flapping" (oscillation), on demande que la valeur reste basse pendant 5 minutes.
+Mettre en place un système complet d’alerting Zabbix 7.4 :
 
-* **Expression modifiée :**  
-  `max(/Linux Server/vfs.fs.size[/,pfree],5m) < 5`  
-  *(Traduction : Si le maximum d'espace libre sur les 5 dernières minutes est inférieur à 5%, alors alerte. Cela signifie que pendant 5 minutes, l'espace n'est jamais repassé au-dessus de 5%).*
+* Triggers modernes (nouvelle syntaxe)
+* Réduction des faux positifs (hysteresis)
+* Dépendances
+* Actions selon la sévérité
+* Escalades multi-niveaux
+* Recovery operations
+* Update operations
+* Tests réels (Linux & Cisco)
 
-### **3.2 Switch Cisco — Port Down & Erreurs**
+---
 
-#### **3.2.1 Trigger : Port Down (Opérationnel)**
+# **1. Configuration des triggers (nouvelle syntaxe Zabbix 7)**
 
-* **Name :** Interface Gi1/0/1 changed state to DOWN  
-* **Severity :** High  
-* **Expression :**  
-  `last(/Switch Cisco/net.if.status[ifOperStatus.10101]) = 2`  
-  *(Note : 10101 est l'index SNMP de l'interface, à adapter selon votre découverte).*
+> **Chemin** : *Data collection → Hosts → Triggers*
 
-#### **3.2.2 Trigger : Taux d'erreur élevé (Maintenance prédictive)**
+Zabbix 7.4 n’utilise plus `{Host:key.last()}`
+➡️ Maintenant : **last(/Host/key)**
 
-* **Name :** High error rate on interface Gi1/0/1  
-* **Severity :** Warning  
-* **Expression :**  
-  `min(/Switch Cisco/net.if.in.errors[ifInErrors.10101],10m) > 5`  
-  *(Alerte seulement si on a plus de 5 erreurs en continu pendant 10 minutes).*
+---
 
-## **4\. 📬 Actions (Le cerveau des notifications)**
+## **1.1 Linux – Disque faible (Trigger intelligent)**
 
-**Chemin :** Alerts → Actions → Trigger actions.
+### **Créer le Trigger**
 
-### **4.1 Action A : "Incidents Critiques" (Mail \+ Chat)**
+* **Name** : Low disk space on {HOST.NAME} (Volume: {ITEM.VALUE1})
+* **Severity** : High
+* **Expression (nouvelle syntaxe)** :
 
-1. **Create action**.  
-2. **Name :** Critical Alerting (High/Disaster).  
-3. **Conditions :**  
-   * Severity is equals to **High**  
-   * Severity is equals to **Disaster**  
-4. **Operations :**  
-   * Send message to users : **Admin**.  
-   * Send only to : **Email, Discord, MS Teams**.
+```
+last(/Linux Server/vfs.fs.size[/,pfree]) < 5
+```
 
-### **4.2 Action B : "Incidents Mineurs" (Chat uniquement)**
+### **1.1.1 Hysteresis — Anti Flapping (faux positifs)**
 
-1. **Create action**.  
-2. **Name :** Warning Alerting (Chat Only).  
-3. **Conditions :**  
-   * Severity is equals to **Warning**  
-   * *(Optionnel)* Severity is equals to **Average**  
-4. **Operations :**  
-   * Send message to users : **Admin**.  
-   * Send only to : **Discord** (et/ou Teams).  
-   * 🔴 **Important :** Ne pas sélectionner Email ici.
+Pour forcer la continuité du problème durant 5 minutes :
 
-## **5\. 🛠️ Best Practices Zabbix 7 (Anti-bruit)**
+```
+max(/Linux Server/vfs.fs.size[/,pfree],5m) < 5
+```
 
-### **5.1 Recovery Expression (Anti-flapping)**
+✔ Cela garantit que l’espace libre **n’est jamais repassé au-dessus de 5%** durant 5 minutes.
 
-Pour éviter qu'un service qui oscille (UP/DOWN toutes les 10s) ne spamme :
+---
 
-1. Dans le Trigger, basculer **Problem generation mode** sur **Recovery expression**.  
-2. **Problem Expression :** last(/Host/cpu.util) \> 95 (Seuil haut)  
-3. **Recovery Expression :** last(/Host/cpu.util) \< 80 (Seuil bas) *Résultat : L'alerte se déclenche à 95%, mais ne se ferme que si le CPU redescend sous 80%.*
+## **1.2 Cisco Switch – Triggers SNMP**
 
-### **5.2 Dépendances (Trigger Dependencies)**
+### **1.2.1 Interface DOWN**
 
-**Cas classique :** Si le routeur est DOWN, tous les serveurs derrière sont injoignables.
+* **Name** : Interface Gi1/0/1 changed state to DOWN
+* **Severity** : High
+* **Expression** :
 
-1. Ouvrir le trigger **"Zabbix Agent unreachable"** de votre serveur Linux.  
-2. Onglet **Dependencies**.  
-3. Ajouter une dépendance vers le trigger **"ICMP Ping Down"** de votre Switch/Routeur. *Résultat : Si le switch tombe, Zabbix n'envoie qu'une seule alerte (le switch) et masque celles des serveurs.*
+```
+last(/Switch Cisco/net.if.status[ifOperStatus.10101]) = 2
+```
 
-## **6\. 📊 Vérification & Test**
+### **1.2.2 Taux d’erreur élevé**
 
-### **6.1 Simulation Disque**
+* **Name** : High error rate on interface Gi1/0/1
+* **Severity** : Warning
+* **Expression** :
 
-Sur le serveur Linux :  
-`# Créer un fichier de 10Go (ajuster selon la taille disque)`  
-`fallocate -l 10G /tmp/fill_disk`
+```
+min(/Switch Cisco/net.if.in.errors[ifInErrors.10101],10m) > 5
+```
 
-1. Aller dans Monitoring → Hosts.  
-2. Cliquer sur **Latest data** pour le Linux.  
-3. Attendre ou forcer **Execute now** sur l'item vfs.fs.size.  
-4. Vérifier Monitoring → Problems.
+✔ Cela évite les alertes sur un pic temporaire.
 
-### **6.2 Simulation Port**
+---
 
-Sur le Switch Cisco (si accès) :  
-`conf t`  
-`int gi1/0/1`  
-`shutdown`
+## **1.3 Dépendances — Anti bruit massif**
 
-Vérifier que l'alerte arrive bien par **Mail ET Discord** (car High severity).
+> Cas : un switch tombe → éviter que 30 serveurs alertent « UNREACHABLE »
 
-## **📦 Résumé des acquis**
+### **Sur le trigger du serveur Linux :**
 
-À la fin de cet atelier Zabbix 7.4, vous maîtrisez :
+* Trigger : *Zabbix Agent unreachable*
+* Onglet **Dependencies** → **Add** :
+  → Dépendance vers *ICMP Ping Down* du Switch/Routeur
 
-* ✅ La nouvelle navigation (Data collection / Alerts).  
-* ✅ La nouvelle syntaxe de triggers (last(/host/key)).  
-* ✅ La ségrégation des alertes (Grave \= Réveil, Warning \= Log).  
-* ✅ L'hysteresis pour stabiliser la surveillance.
+✔ Résultat :
+➡️ Si le switch tombe → **UNE seule alerte** (switch)
+➡️ Les alertes serveur sont **supprimées** tant que la dépendance est active.
+
+---
+
+## **1.4 Recovery Expression (anti-flapping avancé)**
+
+Définir deux seuils : haut pour problème, bas pour recovery.
+
+### Exemple CPU :
+
+* **Problem** :
+
+```
+last(/Host/cpu.util) > 95
+```
+
+* **Recovery** :
+
+```
+last(/Host/cpu.util) < 80
+```
+
+---
+
+# **2. Configuration des Actions — Notifications intelligentes**
+
+> **Chemin** : *Alerts → Actions → Trigger actions*
+
+---
+
+## **2.1 Action A — Incidents Critiques (Mail + Discord + Teams)**
+
+### **Create action :**
+
+* **Name** : Critical Alerting (High/Disaster)
+
+### **Conditions :**
+
+* Trigger severity = **High**
+* OR Trigger severity = **Disaster**
+
+### **Operations (step 1) :**
+
+* Send message → User : **Admin**
+* Media : **Email, Discord, MS Teams**
+
+---
+
+## **2.2 Action B — Incidents mineurs (Chat uniquement)**
+
+### **Create action :**
+
+* **Name** : Warning Alerting (Chat only)
+
+### **Conditions :**
+
+* Trigger severity = **Warning**
+
+### **Operations :**
+
+* Send message → **Admin**
+* Media : **Discord uniquement**
+  ❌ Pas d’Email pour éviter le bruit
+
+---
+
+# **3. Escalades (Escalation Steps)**
+
+> Pour notifier plusieurs niveaux selon le temps et l’absence d’acquittement
+
+### **Dans Action A (Critiques) :**
+
+#### **Step 1 (immédiat)**
+
+* Destinataire : FirstLevel
+* Médias : Email + Discord
+
+#### **Step 2 (après 10 minutes si non résolu / non ack)**
+
+* Destinataire : SecondLevel
+* Média : Email
+
+#### **Step 3 (après 30 minutes)**
+
+* Destinataire : Manager
+* Média : SMS ou Email
+
+---
+
+# **4. Recovery Operations (message de résolution)**
+
+> **Chemin** : Action → Recovery operations
+
+### Exemple :
+
+* Send message → FirstLevel + SecondLevel
+* Sujet : `Problem resolved on {HOST.NAME}`
+* Message :
+
+```
+The issue "{EVENT.NAME}" on {HOST.NAME} has been resolved.
+Duration: {EVENT.DURATION}
+```
+
+✔ Permet de clôturer proprement le ticket ou l’alerte.
+
+---
+
+# **5. Update Operations (messages périodiques)**
+
+> Pour rappeler périodiquement que le problème persiste
+
+### Exemple :
+
+* Every : 15 minutes
+* Message :
+
+```
+The issue {EVENT.NAME} is still active on {HOST.NAME}. 
+Last value: {ITEM.LASTVALUE}
+Please take action.
+```
+
+---
+
+# **6. Tests réels**
+
+## **6.1 Test Linux – Disque plein**
+
+Sur le serveur Linux :
+
+```bash
+fallocate -l 10G /tmp/fill_disk
+```
+
+Puis :
+
+* Monitoring → Latest data → vfs.fs.size
+* Trigger → PROBLEM
+* Alerte → Test escalade + recovery
+
+---
+
+## **6.2 Test Cisco – Port DOWN**
+
+Switch :
+
+```
+conf t
+int gi1/0/1
+shutdown
+```
+
+Vérifier :
+
+* Alerte High → Email + Discord
+* Recovery à l’activation
+
+---
+
+
