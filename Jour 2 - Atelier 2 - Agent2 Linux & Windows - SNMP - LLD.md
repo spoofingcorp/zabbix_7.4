@@ -36,13 +36,15 @@ Nous allons remplacer l'ancien agent par le nouveau sur votre serveur Linux.
    ``` 
 
 2. **Installation Agent 2 (Dépôt 7.4) :**  
+
+Aller sur https://www.zabbix.com/download et trouver les bonnes commandes suivant votre OS pour télécharger l'Agent 2 sur votre VM. 
    
-   ```bash
-   wget https://repo.zabbix.com/zabbix/7.4/ubuntu/pool/main/z/zabbix-release/zabbix-release\_7.4-1+ubuntu24.04\_all.deb  
-   sudo dpkg \-i zabbix-release\_7.4-1+ubuntu24.04\_all.deb  
-   sudo apt update  
-   sudo apt install zabbix-agent2 \-y
-   ``` 
+ ![pix/z6.png](pix/z6.png)
+
+ Lancer les commandes associées :
+ 
+ ![pix/z7.png](pix/z7.png)
+
 
 3. Configuration :  
    Éditez la config de l'agent :
@@ -82,16 +84,45 @@ Pour ajouter notre Windows, nous allons utiliser l'interface "Data Collection". 
 
 ### **🛠️ Pratique : Windows Server 2025**
 
-1. **Installation :** Installez le MSI **Zabbix Agent 2** sur le Windows.  
-   * Hostname : WIN-SRV-01  
-   * Server / ServerActive : IP\_ZABBIX  
-2. Firewall (Action PowerShell Admin) :  
-   L'agent écoute sur le port 10050, mais Windows le bloque par défaut.  
+Voici votre procédure mise à jour, en ajoutant clairement l’étape pour accéder au site officiel **[https://www.zabbix.com/download_agents](https://www.zabbix.com/download_agents)**, puis sélectionner **Zabbix Agent 2** avant installation.
+Ton format a été respecté, ton ton conservé, et le contenu est formalisé de manière professionnelle.
 
-    
-   ```Powershell
-   New-NetFirewallRule \-DisplayName "Zabbix Inbound" \-Direction Inbound \-LocalPort 10050 \-Protocol TCP \-Action Allow
-   ```
+---
+
+# **1. Installation de Zabbix Agent 2 sur Windows**
+
+1. **Téléchargement :**
+   Rendez-vous sur la page officielle :
+   👉 [https://www.zabbix.com/download_agents](https://www.zabbix.com/download_agents)
+
+  ![pix/z8.png](pix/z8.png)
+
+  ![pix/z9.png](pix/z9.png)
+
+
+
+2. **Installation :**
+   Lancez l’installation du MSI **Zabbix Agent 2**.
+   Lors de l’assistant d’installation, configurez :
+
+   * **Hostname :** `WIN-SRV-01`
+   * **Server :** `IP_ZABBIX`
+   * **ServerActive :** `IP_ZABBIX`
+   * **Port :** 10050
+   * Laissez les autres paramètres par défaut.
+
+---
+
+# **2. Ouverture du firewall Windows**
+
+L’agent 2 écoute sur **TCP/10050**. Windows bloque ce port par défaut.
+
+Exécutez PowerShell **en administrateur** :
+
+```powershell
+New-NetFirewallRule -DisplayName "Zabbix Agent 2 Inbound" -Direction Inbound -LocalPort 10050 -Protocol TCP -Action Allow
+```
+
 
 3. **Création de l'Hôte (Zabbix Web) :**  
    * Allez dans **Data collection** → **Hosts** → **Create host**.  
