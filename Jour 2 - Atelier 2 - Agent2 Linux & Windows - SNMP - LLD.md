@@ -20,7 +20,6 @@ Avant de migrer, comprenons l'évolution.
   * *Avantage :* Traverse les pare-feux/NAT et soulage le serveur Zabbix.  
   * *Bonne pratique :* Toujours privilégier le **mode Actif**.
 
-Voici le texte formaté en Markdown, prêt à être intégré dans votre support de cours. J'ai ajouté des éléments visuels (code blocks, listes, citations) pour faciliter la lecture par les apprenants.
 
 -----
 
@@ -72,7 +71,7 @@ Pour que le mode Actif fonctionne, il faut impérativement vérifier deux choses
 Vous devez remplir le champ `ServerActive`.
 
 ```ini
-# Le mode Passif utilise ce champ (Optionnel si vous ne faites que de l'actif)
+# Le mode Passif utilise ce champ (Non optionnel Bug et débat au sein de la commu)
 Server=192.168.1.10
 
 # Le mode Actif utilise OBLIGATOIREMENT ce champ
@@ -126,7 +125,7 @@ Aller sur https://www.zabbix.com/download et trouver les bonnes commandes suivan
    Remplissez les champs pour supporter les deux modes :  
    
    ```bash
-   * Server=IP\_ZABBIX (Pour le mode Passif)  
+   * Server=IP\_ZABBIX (Non optionnel Bug et débat au sein de la commu)
    * ServerActive=IP\_ZABBIX (Pour le mode Actif)  
    * Hostname=VotreNomLinuxExact (Doit correspondre à l'interface Web)
    ``` 
