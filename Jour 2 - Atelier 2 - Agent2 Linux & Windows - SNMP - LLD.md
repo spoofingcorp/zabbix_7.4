@@ -225,8 +225,22 @@ Nous allons superviser un équipement réseau via SNMP au travers d'un NAT.
 
 1. **Validation :** Sur le serveur Zabbix, testez le NAT (IP Publique 80.14.xxx.xxx vers port interne via 16444).  
    ```bash  
-   snmpwalk \-v2c \-c public \-p 16444 80.14.162.70 system
+   snmpwalk \-v2c \-c MaCommunauteSecurisee 80.14.162.70:16444 system
    ```
+
+Vous pouvez utiliser Paessler SNMP Tester 
+https://www.paessler.com/tools/snmptester
+
+![pix/z10.png](pix/z10.png)
+ 
+ 
+IP Public - Port SNMP
+
+80.14.162.70:16444
+MaCommunauteSecurisee
+ 
+ 
+
 
 2. **Configuration Hôte :**  
    * Créez l'hôte SW-CISCO-01.  
