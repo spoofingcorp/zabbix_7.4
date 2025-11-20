@@ -161,7 +161,7 @@ Puisque nous avons configuré un délai de déclenchement de **5 minutes** (`min
     Créons un fichier de 10 Go (ajuster la taille selon la taille de votre disque pour dépasser les 95%).
     ```bash
     # Créer un fichier 'dummy' rempli de zéros
-    dd if=/dev/zero of=/tmp/disk_fill_test bs=1G count=10
+    fallocate -l 10G /tmp/fill_disk
     ```
 2.  **Observer dans Zabbix :**
       * Allez dans *Monitoring → Hosts → Latest data*.
@@ -173,7 +173,7 @@ Puisque nous avons configuré un délai de déclenchement de **5 minutes** (`min
       * Zabbix doit afficher le message d'escalade après 15 min si non résolu.
 4.  **Résolution :**
     ```bash
-    rm /tmp/disk_fill_test
+    rm /tmp/fill_disk
     ```
       * L'alerte doit se fermer (Status OK) et envoyer le message de "Recovery".
 
