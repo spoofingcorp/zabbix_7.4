@@ -68,7 +68,7 @@ Zabbix 7 possède des connecteurs natifs plus puissants que les webhooks bruts.
 
 ## **3\. 🔔 Configuration des Triggers (Nouvelle Syntaxe Z7)**
 
-1. Configuration des triggers (nouvelle syntaxe Zabbix 7)
+## 1. Configuration des triggers (nouvelle syntaxe Zabbix 7)
 
 Chemin : Data collection → Hosts → Triggers
 
