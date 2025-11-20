@@ -1,4 +1,4 @@
-# 🧭 Atelier Complet Zabbix 7.4 — Ubuntu 24.04  
+# 🧭 Jour 1 - Atelier 1 - Zabbix 7.4 - Installation et configuration 
 **Installation Serveur | Installation Agent Linux | Ajout d’Hôte | Templates | Dashboard | Vérifications | Dépannage**
 
 ---
