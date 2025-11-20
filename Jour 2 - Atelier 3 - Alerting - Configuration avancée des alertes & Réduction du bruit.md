@@ -68,38 +68,12 @@ Zabbix 7 possède des connecteurs natifs plus puissants que les webhooks bruts.
 
 ## **3\. 🔔 Configuration des Triggers (Nouvelle Syntaxe Z7)**
 
-**Attention :** La syntaxe {Host:key.last()} est obsolète. Nous utilisons last(/Host/key).
+1. Configuration des triggers (nouvelle syntaxe Zabbix 7)
 
-Voici une **version corrigée, unifiée et complète**, qui **combine ton travail** (triggers, faux positifs, dépendances, tests…) **avec l’atelier professionnel sur les actions, conditions, opérations, escalades et opérations de récupération pour Zabbix 7.4**.
+Chemin : Data collection → Hosts → Triggers
 
-Le tout est cohérent, structuré, exploitable en formation ou en documentation interne.
-
----
-
-# 🧪 **ATELIER ZABBIX 7.4 — Configuration Triggers + Actions + Escalades + Recovery**
-
-## 🎯 Objectif
-
-Mettre en place un système complet d’alerting Zabbix 7.4 :
-
-* Triggers modernes (nouvelle syntaxe)
-* Réduction des faux positifs (hysteresis)
-* Dépendances
-* Actions selon la sévérité
-* Escalades multi-niveaux
-* Recovery operations
-* Update operations
-* Tests réels (Linux & Cisco)
-
----
-
-# **1. Configuration des triggers (nouvelle syntaxe Zabbix 7)**
-
-> **Chemin** : *Data collection → Hosts → Triggers*
-
-Zabbix 7.4 n’utilise plus `{Host:key.last()}`
-➡️ Maintenant : **last(/Host/key)**
-
+Zabbix 7.4 n’utilise plus {Host:key.last()}
+➡️ Maintenant : last(/Host/key)
 ---
 
 ## **1.1 Linux – Disque faible (Trigger intelligent)**
