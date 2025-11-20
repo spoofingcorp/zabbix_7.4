@@ -139,7 +139,7 @@ Aller sur https://www.zabbix.com/download et trouver les bonnes commandes suivan
    
    Depuis le serveur Zabbix, testez : 
    ``` 
-   zabbix\_get \-s IP\_AGENT \-k agent.version (Doit afficher 7.4.x)
+   zabbix_get -s IP_de_la_VM -k agent.version (Doit afficher 7.4.x)
    ``` 
 
 ---
