@@ -114,10 +114,10 @@ sudo systemctl restart zabbix-agent2
 4.  **Onglet "Operations" :**
       * Repérez la section **Operations** (la première zone).
       * Cliquez sur **Add**.
-      * **Operation type :** `Global script`.
-      * **Script name :** Sélectionnez `Restart Apache2` (créé à l'étape 2).
+      * **Operation :** `Restart Apache2` (créé à l'étape 2).
       * **Target list :** Cochez **Current host**.
       * Cliquez sur le petit bouton **Add** (dans la popup).
+      * Au cas ou selectionner votre hôte
 5.  Cliquez sur le bouton final **Add** (en bas de page) pour sauvegarder.
 
 -----
