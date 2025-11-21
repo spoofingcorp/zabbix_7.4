@@ -32,7 +32,90 @@ Avant de créer un rapport planifié, vérifier les éléments suivants :
 Vérifier dans **Administration → General → GUI → Frontend URL** :
 
 * **Frontend URL :**
-  `https://monitoring.example.com/zabbix/`
+  `https://monitoring.example.com/ # Ou l'IP du Serveur Zabbix`
+
+
+La fonctionnalité de rapports PDF (Scheduled Reports) introduite depuis Zabbix 5.4/6.0 nécessite une architecture particulière qui n'est pas activée par défaut.
+
+Voici les étapes pour corriger ce problème sur votre Zabbix (la procédure est identique pour la version 7.x) :
+
+### 1\. Comprendre l'architecture
+
+Pour générer un PDF, Zabbix Server ne le fait pas tout seul. Il a besoin de deux composants supplémentaires :
+
+1.  **Zabbix Web Service :** Un service autonome qui fait le pont.
+2.  **Google Chrome (ou Chromium) :** Utilisé en mode "headless" pour faire le rendu visuel du dashboard avant de le convertir en PDF.
+
+-----
+
+### 2\. Installation des paquets requis
+
+Si ce n'est pas déjà fait, vous devez installer le service web et le navigateur.
+
+**Sur RHEL/CentOS/AlmaLinux/Rocky :**
+
+```bash
+dnf install zabbix-web-service google-chrome-stable
+```
+
+*(Note : Si `google-chrome-stable` n'est pas trouvé, vous pouvez utiliser `chromium`)*.
+
+**Sur Debian/Ubuntu :**
+
+```bash
+apt install zabbix-web-service chromium
+```
+
+### 3\. Configuration du Serveur Zabbix
+
+C'est l'étape cruciale qui cause votre message d'erreur. Vous devez dire au serveur Zabbix de démarrer les processus "Report Writers".
+
+1.  Ouvrez le fichier de configuration : `/etc/zabbix/zabbix_server.conf`
+2.  Recherchez et modifiez (ou ajoutez) les lignes suivantes :
+
+<!-- end list -->
+
+```ini
+# Ce paramètre doit être au moins à 1 (par défaut il est à 0, ce qui cause votre erreur)
+StartReportWriters=1
+
+# L'URL où écoute le zabbix-web-service (par défaut port 10053)
+WebServiceURL=http://localhost:10053/report
+```
+
+### 4\. Configuration du Zabbix Web Service
+
+Vérifiez le fichier `/etc/zabbix/zabbix_web_service.conf`. Généralement, la configuration par défaut suffit, mais assurez-vous que le port correspond (10053).
+
+Ensuite, activez et démarrez le service :
+
+```bash
+systemctl enable --now zabbix-web-service
+```
+
+### 5\. Redémarrage du Serveur Zabbix
+
+Pour prendre en compte le changement `StartReportWriters`, redémarrez le serveur :
+
+```bash
+systemctl restart zabbix-server
+```
+
+-----
+
+### 6\. Configuration de l'URL Frontend (Interface Web)
+
+Dernière étape : Le service web (Chrome) doit savoir à quelle adresse URL se connecter pour prendre la "photo" du dashboard.
+
+1.  Allez dans l'interface web Zabbix.
+2.  Menu **Administration** -\> **General** -\> **Other** (ou **Autre**).
+3.  Cherchez le champ **Frontend URL**.
+4.  Mettez l'URL complète de votre interface Zabbix (ex: `http://192.168.1.50/`).
+      * *Note : Cette URL doit être accessible depuis le serveur lui-même.*
+
+### Résumé du dépannage
+
+Si l'erreur persiste après ces étapes, vérifiez les logs du serveur (`/var/log/zabbix/zabbix_server.log`). Si vous voyez une erreur parlant de "handshake" ou de "connection refused", c'est souvent que le `zabbix-web-service` ne tourne pas ou que le port 10053 est bloqué par un pare-feu local.
 
 ---
 
