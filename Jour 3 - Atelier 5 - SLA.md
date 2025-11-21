@@ -2,20 +2,59 @@
 
 **Objectif :** Construire une chaîne de surveillance complète qui part d'une vérification technique (ping HTTP) pour aboutir à un rapport de disponibilité managérial (SLA 99.9%), en utilisant les meilleures pratiques de templating.
 
+
 ---
 
-## Phase 1 : La Stratégie d'Abstraction (Macros)
+### Étape 0 : Comprendre le concept
+Dans ce scénario, Zabbix (le serveur ou le proxy) va agir comme un client qui navigue sur votre site. L'hôte que nous créons sert juste de **boîte** pour ranger le scénario web et les données SLA.
 
-Avant de créer le scénario, nous définissons l'URL au niveau de l'Hôte. Cela rend votre configuration réutilisable.
-
+### Étape 1 : Création de l'Hôte
 1.  Allez dans **Collecte de données → Hôtes**.
-2.  Cliquez sur votre hôte web.
-3.  Allez dans l'onglet **Macros**.
-4.  Ajoutez les variables suivantes :
-    * `{$WEB.URL}` : `https://www.mon-service.com` (L'URL racine)
-    * `{$WEB.USER}` : `mon_utilisateur` (Si login requis)
-    * `{$WEB.PASSWORD}` : `mon_mot_de_passe` (Si login requis)
-5.  Cliquez sur **Mettre à jour**.
+2.  Cliquez sur le bouton **Créer un hôte** (en haut à droite).
+
+### Étape 2 : Configuration de l'Hôte (Onglet Hôte)
+Remplissez les champs comme suit :
+
+* **Nom de l'hôte :** `Srv_Web_Portail_Client`
+    * *Conseil : Donnez-lui un nom technique unique sans espaces.*
+* **Nom visible :** `Portail Client (Web)`
+    * *Conseil : C'est ce nom qui s'affichera sur les cartes et les graphiques.*
+* **Modèles (Templates) :**
+    * C'est ici que vous liez le travail fait précédemment.
+    * Tapez ou sélectionnez : `Template App HTTPS SLA Gold` (celui que nous avons importé/créé).
+* **Groupes d'hôtes :**
+    * Sélectionnez ou créez un groupe, par exemple : `Applications Web` ou `Services Critiques`.
+* **Interfaces :**
+    * *Subtilité :* Pour un scénario web pur, l'interface n'est pas strictement utilisée (car l'URL est dans le scénario), mais Zabbix en demande souvent une par défaut ou pour faire un "Ping" simple.
+    * Cliquez sur **Ajouter** → **Agent**.
+    * **Adresse IP :** `127.0.0.1` (Si vous voulez juste que l'hôte existe) **OU** mettez l'IP réelle de votre site web (`192.x.x.x`) si vous souhaitez aussi surveiller la latence réseau (Ping) vers ce serveur.
+    * **Port :** `10050` (Laissez par défaut).
+
+### Étape 3 : Configuration des Macros (Votre point de départ)
+C'est maintenant que vous appliquez la consigne de la Phase 1.
+
+1.  Restez dans la fenêtre de configuration de l'hôte.
+2.  Cliquez sur l'onglet **Macros** (en haut).
+3.  Cliquez sur **Macros héritées et du modèle** (Bouton important).
+    * *Pourquoi ?* Parce que vous avez lié le modèle à l'étape 2, les macros `{$WEB.URL}`, `{$WEB.USER}`, etc. devraient déjà apparaître en "gris" (héritées).
+4.  Cliquez sur **Modifier** (le petit lien à côté de la valeur héritée) ou ressaisissez simplement la macro pour la surcharger spécifiquement pour cet hôte.
+    * Macro : `{$WEB.URL}` ⇒ Valeur : `https://votre-vrai-site.com`
+    * Macro : `{$WEB.PASSWORD}` ⇒ Valeur : `votre_mot_de_passe`
+    * *Type :* Pour le mot de passe, cliquez sur le bouton "Texte" pour le passer en "Secret" (il sera masqué par des astérisques).
+
+### Étape 4 : Validation
+Cliquez sur le bouton **Ajouter** (en bas).
+
+---
+
+### Résumé : À quoi ressemble votre hôte ?
+Vous avez maintenant un hôte `Srv_Web_Portail_Client` qui :
+1.  Contient le modèle SLA.
+2.  Possède les bonnes URLs via les Macros.
+3.  Ne nécessite **aucun agent Zabbix installé** sur le serveur web cible (c'est le serveur Zabbix qui fait le travail à distance).
+
+Une fois cet hôte créé, le scénario web (Phase 2 de l'atelier) se lancera automatiquement sous 1 minute.
+
 
 ---
 
