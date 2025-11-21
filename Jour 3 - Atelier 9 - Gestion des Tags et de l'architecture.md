@@ -1,4 +1,4 @@
-# 🏷️ Zabbix Tagging : Guide de l'Architecte Senior (v5.0-7.x)
+# 🏷️ Atelier 9 - Zabbix Tagging : Guide de l'Architecte Senior (v5.0-7.x)
 
 Le **tagging** est la fonctionnalité la plus sous-estimée mais la plus puissante de Zabbix moderne (depuis la 5.0, et encore plus critique en 7.x). Si vous commencez à implémenter Zabbix dans votre SI, ce guide vous aidera à le structurer comme un architecte Zabbix Senior.
 

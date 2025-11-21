@@ -1,4 +1,4 @@
-# 🛠️ Jour 3 - Atelier 5.1 - Auto-Remédiation (Self-Healing) Apache
+# 🛠️ Jour 3 - Atelier 10 - Auto-Remédiation (Self-Healing) Apache
 
 **Scénario :** Zabbix surveille le service Apache sur Debian 13. Si le service s'arrête, Zabbix ordonne automatiquement à l'agent de le redémarrer.
 
