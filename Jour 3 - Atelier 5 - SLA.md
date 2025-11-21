@@ -36,11 +36,9 @@ C'est maintenant que vous appliquez la consigne de la Phase 1.
 1.  Restez dans la fenêtre de configuration de l'hôte.
 2.  Cliquez sur l'onglet **Macros** (en haut).
 3.  Cliquez sur **Macros héritées et du modèle** (Bouton important).
-    * *Pourquoi ?* Parce que vous avez lié le modèle à l'étape 2, les macros `{$WEB.URL}`, `{$WEB.USER}`, etc. devraient déjà apparaître en "gris" (héritées).
+    * *Pourquoi ?* Parce que vous avez lié le modèle à l'étape 2, les macros `{$WEB.URL}`, etc. devraient déjà apparaître en "gris" (héritées).
 4.  Cliquez sur **Modifier** (le petit lien à côté de la valeur héritée) ou ressaisissez simplement la macro pour la surcharger spécifiquement pour cet hôte.
     * Macro : `{$WEB.URL}` ⇒ Valeur : `https://votre-vrai-site.com`
-    * Macro : `{$WEB.PASSWORD}` ⇒ Valeur : `votre_mot_de_passe`
-    * *Type :* Pour le mot de passe, cliquez sur le bouton "Texte" pour le passer en "Secret" (il sera masqué par des astérisques).
 
 ### Étape 4 : Validation
 Cliquez sur le bouton **Ajouter** (en bas).
@@ -74,9 +72,9 @@ Nous créons le robot qui va tester le site.
 ### Onglet 2 : Étapes (Steps)
 C'est ici que vous définissez la navigation.
 * **Étape 1 : Accueil**
-    * **URL :** `{$WEB.URL}/index.html` (Utilisation de la Macro définie en Phase 1).
+    * **URL :** `{$WEB.URL}` (Utilisation de la Macro définie en Phase 1).
     * **Codes d'état requis :** `200`.
-    * **Chaîne requise :** `Copyright` (Ou un texte unique du footer pour valider le chargement complet).
+    * **Chaîne requise :** `Copyright` (OPTIONNEL - NON OBLIGATOIRE - Ou un texte unique du footer pour valider le chargement complet).
 
 *(Cliquez sur Ajouter pour sauvegarder le scénario)*
 
