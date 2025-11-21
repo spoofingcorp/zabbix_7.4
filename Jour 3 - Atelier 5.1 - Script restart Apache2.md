@@ -139,6 +139,59 @@ sudo systemctl restart zabbix-agent2
     Le service doit être `Active: active (running)`.
 
 
+C'est une excellente question de sécurité et de stabilité. Vous ne voulez pas que Zabbix tente de redémarrer un service en boucle infinie s'il est cassé (ce qu'on appelle un "restart loop").
+
+Par défaut, une **Action** Zabbix s'exécute **une seule fois** par incident (événement). Cependant, pour s'en assurer et comprendre comment contrôler cela, il faut regarder la configuration des **Steps** (Étapes) dans l'onglet Operations.
+
+Voici comment vérifier et configurer cela strictement pour **1 tentative unique**.
+
+---
+
+### Configuration dans Zabbix (English UI)
+
+1.  Allez dans **Alerts** $\to$ **Actions** $\to$ **Trigger actions**.
+2.  Cliquez sur le nom de votre action (`Auto-Heal Apache2`).
+3.  Allez dans l'onglet **Operations**.
+4.  Dans la section "Operations", cliquez sur **Edit** à côté de votre script (ou cliquez sur le nom du script s'il est déjà là).
+
+#### Le paramètre clé : "Steps"
+
+Pour limiter à **1 seule exécution**, la configuration doit être :
+
+* **Steps :** `1 - 1`
+    * *Cela signifie : Exécute cette opération dès le début du problème (étape 1) et arrête-toi après l'étape 1.*
+* **Step duration :** (Peu importe ici, car il n'y a qu'une étape, mais par défaut `1h` ou `0` est bien).
+
+
+
+---
+
+### Aller plus loin : Le scénario "Escalade" (Recommandé)
+
+Le scénario idéal n'est pas juste de limiter à 1 fois, mais de faire ceci : **"Tente de redémarrer 1 fois. Si ça ne marche pas, préviens un humain."**
+
+Voici comment configurer cette intelligence dans l'onglet **Operations** :
+
+#### Opération 1 : Le Redémarrage (Tentative automatique)
+* Cliquez sur **Add** (ou modifiez l'existant) :
+* **Steps :** `1 - 1`
+* **Operation type :** `Global script` (Restart Apache2).
+* **Step duration :** `00:02:00` (Ceci est crucial : on dit à Zabbix "Attends 2 minutes après cette étape avant de passer à la suivante").
+
+#### Opération 2 : L'Alerte (Si le redémarrage a échoué)
+* Cliquez sur **Add** (une deuxième fois) :
+* **Steps :** `2 - 2` (Ceci ne se déclenchera que si le problème est toujours là après la durée de l'étape 1).
+* **Operation type :** `Send message`.
+* **Send to users :** (Sélectionnez votre compte Admin).
+* **Message :** "Le redémarrage automatique d'Apache a échoué. Intervention manuelle requise."
+
+### Résumé du comportement avec cette config :
+1.  **T+0 :** Apache tombe. Zabbix exécute le script (Étape 1).
+2.  **T+2 min :** Zabbix vérifie si le trigger est toujours actif (si Apache est toujours down).
+    * **Si Apache est UP :** L'action s'arrête. Tout va bien.
+    * **Si Apache est DOWN :** Zabbix passe à l'Étape 2 et envoie l'email à l'admin. Il ne tentera plus de redémarrer.
+
+
 _______(Optionnel)_Ajout de la Notification de Réussite (Recovery Operation)_______
 
 Confirmer que le script a bien fonctionné et que le service est retombé sur ses pattes (le Trigger est passé de l'état "Problem" à "Resolved"). 
