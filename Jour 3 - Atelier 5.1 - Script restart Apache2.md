@@ -6,7 +6,7 @@
 
 ### Étape 1 : Préparation du Système (Sur Debian 13 ou Ubuntu 24.04)
 
-- Prérequis, en hôte Linux avec l'agent 2 Zabbix installé :
+- Prérequis, en hôte Linux avec l'agent 2 Zabbix installé + Apache2:
 
 *Cette étape se déroule dans le terminal de votre serveur Debian (SSH).*
 
