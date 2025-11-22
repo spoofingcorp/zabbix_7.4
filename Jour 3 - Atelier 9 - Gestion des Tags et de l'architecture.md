@@ -133,8 +133,6 @@ C'est ici que la magie opère. Au lieu de créer une action par Hostgroup, vous 
 
 ## 5\. 🛠️ Proposition d'Exercice Pratique
 
-Pour ton repo `Optimisation Alerting.md`, je te suggère d'ajouter cet exercice pratique pour bien illustrer le concept :
-
 ### Scénario : Le Routage Intelligent
 
 L'objectif est de prouver que le même serveur peut alerter des équipes différentes en fonction du problème technique.
