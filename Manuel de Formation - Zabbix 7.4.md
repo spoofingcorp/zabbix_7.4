@@ -224,7 +224,7 @@ Assurez-vous que votre serveur Ubuntu 24.04 est à jour.
 
 **2\. Suivre les indications du Git \- Jour 1** 
 
-[Atelier Complet Zabbix 7.4 — Ubuntu 24.04](https://github.com/spoofingcorp/zabbix_7.4/blob/main/Jour%201%20-%20Zabbix%207.4%20%E2%80%94%20Guide%20complet%20d%E2%80%99installation%20\(Serveur%20%2B%20Agent%20Linux%20%2B%20Dashboard\).md)  
+[Installation Zabbix 7.4 — Ubuntu 24.04](https://github.com/spoofingcorp/zabbix_7.4/blob/main/Jour%201%20-%20Atelier%201%20-%20Guide%20installation%20Zabbix%207.4%20(Serveur%20%2B%20Agent%20Linux%20%2B%20Dashboard).md)  
 
 
 **3\. Accès via l'Interface Web**
