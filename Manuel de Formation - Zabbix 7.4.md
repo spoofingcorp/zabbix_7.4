@@ -1,4 +1,4 @@
-# **Manuel de Formation Complet \- Zabbix 7.4 (3 Jours)**
+# **Manuel de Formation Complet \- Zabbix 7.4**
 
 ## **1\. Introduction à la Formation**
 
